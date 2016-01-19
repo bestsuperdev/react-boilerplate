@@ -2,15 +2,15 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
+// var autoprefixer = require('autoprefixer');
+// var precss = require('precss');
 // var cssgrace = require('cssgrace');
-var filterGradient = require('postcss-filter-gradient');
-var atImport = require("postcss-import");
-var postcssUrl = require("postcss-url");
+// var filterGradient = require('postcss-filter-gradient');
+// var atImport = require("postcss-import");
+// var postcssUrl = require("postcss-url");
 module.exports = {
     entry: {
-        main : path.join(__dirname,"./src/scripts/main.js")   
+        main : path.join(__dirname,"./examples/scripts/main.js")   
     },
     output: {
         path: path.join(__dirname,'hot'),
@@ -20,7 +20,8 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.css$/,  loader: 'style-loader!css-loader!postcss-loader' },
+            { test: /\.css$/,  loader: 'style-loader!css-loader!autoprefixer-loader' },
+            { test : /\.less$/, loader : 'style-loader!css-loader!autoprefixer-loader!less-loader'},
             { test : /\.jsx?$/ ,loader : 'react-hot!babel?presets[]=react,presets[]=es2015' , exclude: /(node_modules|bower_components)/},
             // { test : /\.jsx?$/ , loader : 'babel-loader' , query:{ presets : ['es2015','react'] } , exclude: /(node_modules|bower_components)/},
             //如果不超过30000/1024kb,那么就直接采用dataUrl的形式,超过则返回链接,图片会复制到dist目录下
@@ -30,28 +31,25 @@ module.exports = {
     },
 
     resolve : {
-        root : path.resolve('./src')
+        root : path.resolve('./')
     },
 
-    postcss: function () {
-        return [atImport({ onImport : function(files){ files.forEach(this.addDependency); }.bind(this) }), 
-                postcssUrl ,
-                autoprefixer, 
-                precss,
-                // cssgrace,
-                filterGradient];
-    },
+    // postcss: function () {
+    //     return [atImport({ onImport : function(files){ files.forEach(this.addDependency); }.bind(this) }), 
+    //             postcssUrl ,
+    //             autoprefixer, 
+    //             precss,
+    //             // cssgrace,
+    //             filterGradient];
+    // },
     plugins : [ 
         new webpack.DefinePlugin({
             __DEBUG__: true
         }),
-        new webpack.ProvidePlugin({
-            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-        }),
         new webpack.optimize.CommonsChunkPlugin("commons", "[name].[hash].bundle.js"),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template : 'src/index.html',
+            template : 'examples/index.html',
             inject: true
             // filename: '../index.html',
         })

@@ -1,0 +1,11 @@
+mock
+src
+styles
+test
+.babelrc
+.npmignore
+.gitignore
+CHANGELOG.*
+karma.conf.js
+webpack.config.js
+examples

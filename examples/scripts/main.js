@@ -1,8 +1,10 @@
-require("../styles/style.css")
-require("babel-polyfill");
+require("../styles/style.less")
+//组件样式
+require("styles/index.less")
+
 import ReactDom from 'react-dom'
 import React from 'react'
-import App from 'scripts/components/app'
+import App from './components/app'
 
 if (__DEBUG__ === true) {
 	console.log('this is debug mode')
