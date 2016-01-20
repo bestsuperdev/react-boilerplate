@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
-  "version": "0.1.4",
-  "description": "a react boilerplate",
+  "name": "react-component-boilerplate",
+  "version": "0.2.0",
+  "description": "a react component boilerplate",
   "main": "lib/index.js",
   "style": "lib/index.css",
   "less": "styles/index.less",
