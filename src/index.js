@@ -1,4 +1,4 @@
-import React from 'react';
+var React = require('react')
 
 const Test = React.createClass({
 	render() {
@@ -8,4 +8,5 @@ const Test = React.createClass({
 	}
 });
 
-export default Test
+
+module.exports = Test

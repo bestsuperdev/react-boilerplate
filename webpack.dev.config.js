@@ -22,7 +22,7 @@ module.exports = {
         loaders: [
             { test : /\.css$/,  loader : 'style-loader!css-loader!postcss-loader' },
             { test : /\.less$/, loader : 'style-loader!css-loader!postcss-loader!less-loader'},
-            { test : /\.jsx?$/, loader : 'react-hot!babel?presets[]=react,presets[]=es2015', exclude: /(node_modules|bower_components)/},
+            { test : /\.jsx?$/, loader : 'babel', exclude: /(node_modules|bower_components)/},
             // { test : /\.jsx?$/ , loader : 'babel-loader' , query:{ presets : ['es2015','react'] } , exclude: /(node_modules|bower_components)/},
             //如果不超过30000/1024kb,那么就直接采用dataUrl的形式,超过则返回链接,图片会复制到dist目录下
             { test : /\.(png|jpg|jpeg|gif)$/, loader : "url-loader?limit=30000" },
@@ -39,9 +39,11 @@ module.exports = {
     },
     plugins : [ 
         new webpack.DefinePlugin({
-            __DEBUG__: true
+            "process.env" : {
+                NODE_ENV : JSON.stringify("development")
+            }
         }),
-        new webpack.optimize.CommonsChunkPlugin("commons", "[name].[hash].bundle.js"),
+        new webpack.optimize.CommonsChunkPlugin("commons", "[name].bundle.js"),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template : 'examples/index.html',
@@ -50,6 +52,6 @@ module.exports = {
         })
     ],
     debug : true,
-    devtool : 'cheap-module-eval-source-map'
+    devtool :'#inline-source-map'
     //devServer 配置在webpack.dev.server.js 中
 };

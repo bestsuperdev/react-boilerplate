@@ -22,7 +22,7 @@ module.exports = {
         loaders: [
             { test : /\.css$/,  loader : ExtractTextPlugin.extract('style-loader','css-loader!postcss-loader')},
             { test : /\.less$/, loader : ExtractTextPlugin.extract('style-loader','css-loader!postcss-loader!less-loader')},
-            { test : /\.jsx?$/, loader : 'babel' , query : {presets : ['react','es2015'] , plugins : ['transform-es3-property-literals','transform-es3-member-expression-literals']} , exclude: /(node_modules|bower_components)/},
+            { test : /\.jsx?$/, loader : 'babel' , exclude: /(node_modules|bower_components)/},
             // { test : /\.jsx?$/ , loader : 'babel-loader' , query:{ presets : ['es2015','react'] } , exclude: /(node_modules|bower_components)/},
             //如果不超过30000/1024kb,那么就直接采用dataUrl的形式,超过则返回链接,图片会复制到dist目录下
             { test: /\.(png|jpg|jpeg|gif)$/, loader: "url-loader?limit=30000" },
@@ -39,7 +39,9 @@ module.exports = {
     },
     plugins : [ 
         new webpack.DefinePlugin({
-            __DEBUG__: true
+           "process.env" : {
+                NODE_ENV : JSON.stringify("production")
+            }
         }),
         new ExtractTextPlugin("[name].bundle.css",{allChunks: true}),
         new webpack.optimize.CommonsChunkPlugin("commons", "[name].bundle.js"),
