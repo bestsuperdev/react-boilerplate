@@ -2,14 +2,8 @@ require("../styles/style.less")
 //组件样式
 require("styles/index.less")
 
-import ReactDom from 'react-dom'
-import React from 'react'
-import App from './components/app'
-
-
-if (process.env.NODE_ENV !== 'production') {
-	console.log('this is dev mode')
-}
+var ReactDom = require('react-dom') 
+var React = require('react') 
 /*
 	动态设置publicPath，在正式环境运行的时候为绝对路径，如果需要手动指定，可以直接设置
 	__webpack_public_path__的值
@@ -24,5 +18,5 @@ for (var i = scripts.length - 1; i >= 0; i--) {
 	}
 };
 
-
+var App = require('./components/app')
 ReactDom.render(<App/>, document.querySelector('#root'));
