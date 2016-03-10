@@ -1,5 +1,5 @@
-var React = require('react')
-var Test = require('src/index.js')
+const React = require('react')
+const Test = require('src/index.js')
 class App extends React.Component {
 	render() {
 		return (
