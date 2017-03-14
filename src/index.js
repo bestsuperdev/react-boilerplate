@@ -8,5 +8,5 @@ const Test = React.createClass({
 	}
 });
 
-
-module.exports = Test
+export default Test
+// module.exports = Test
