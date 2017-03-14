@@ -18,5 +18,9 @@ for (var i = scripts.length - 1; i >= 0; i--) {
 	}
 };
 
-var App = require('./components/app')
+import App from './components/app'
+// var App = require('./components/app')
+
+
+
 ReactDom.render(<App/>, document.querySelector('#root'));

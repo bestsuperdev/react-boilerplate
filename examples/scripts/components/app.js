@@ -1,6 +1,8 @@
 const React = require('react')
-const Test = require('src/index.js')
-class App extends React.Component {
+
+// const Test = require('src/index.js')
+import Test from 'src/index.js'
+export default class App extends React.Component {
 	render() {
 		return (
 			<div className='app'>
@@ -9,5 +11,3 @@ class App extends React.Component {
 		)
 	}
 }
-
-module.exports = App
