@@ -1,4 +1,4 @@
-var localIp = require('quick-local-ip');
+// var localIp = require('quick-local-ip');
 var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
